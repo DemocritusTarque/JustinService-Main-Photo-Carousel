@@ -8,19 +8,21 @@ CREATE TABLE product
   AUTO_INCREMENT,
   productName varchar
   (255),
+  tid int
+  (11) not null UNIQUE,
   primary key
-  (id),
-  foreign key
-  (image_id) references images
   (id)
 );
 
-  CREATE TABLE images
+  CREATE TABLE image
   (
     id int(11) NOT NULL
     AUTO_INCREMENT,
-  urlLink varchar
+    urlLink varchar
     (255),
-  primary key
+    product_id int
+    (11) NOT NULL REFERENCES product
+    (id),
+    primary key
     (id)
-) ;
+);
