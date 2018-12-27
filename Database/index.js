@@ -27,7 +27,7 @@ createProduct = function (product, callback) {
 					return [productResult.insertId, url];
 				});
 				connection.query(
-					'Insert into image(product_id, urlLink) values ?',
+					'Insert into images(product_id, urlLink) values ?',
 					[bulkPhotoInsert],
 					(error, results) => {
 						if (error) {
