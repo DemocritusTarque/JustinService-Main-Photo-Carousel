@@ -9,7 +9,7 @@ const port = 3000;
 
 app.use(morgan());
 app.use(bodyParser.json({ type: 'application/json' }));
-// app.use(express.static(path.join(__dirname, '../client/dist.index.html')));
+app.use(express.static(path.join(__dirname, '../client/dist/index.html')));
 
 app.get('/api/seedData/:id', (req, res) => {
     getSpecificProductPhotos(req.params.id, (error, results) => {

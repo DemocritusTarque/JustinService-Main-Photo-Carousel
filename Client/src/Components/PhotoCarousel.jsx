@@ -9,8 +9,8 @@
 import React from 'react';
 
 class PhotoCarousel extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {};
   }
@@ -19,7 +19,9 @@ class PhotoCarousel extends React.Component {
 
   render () {
     return (
-      <h1>Yooooooo!!!</h1>
+      <div>
+        <h1>Yooooooo!!!</h1>
+      </div>
     ) 
   }
 
