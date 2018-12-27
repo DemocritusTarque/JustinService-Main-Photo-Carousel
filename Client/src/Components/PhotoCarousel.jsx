@@ -6,10 +6,32 @@
 
 // onClick this becomes the picture in the photoCarousel.... - does this component need to contain state? - considering this to be functional only and stateful to be the PhotoCarousel with a currentPic:  property in state.
 
-import React, { Component } from 'react';
-// destructure component off of react so we dont need to call extends React.Component
-export default class PhotoCarousel extends Component {
-  render() {
-    return <div />;
+import React from 'react';
+
+class PhotoCarousel extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
   }
+
+
+
+  render () {
+    return (
+      <h1>Yooooooo!!!</h1>
+    ) 
+  }
+
 }
+
+export default PhotoCarousel;
+
+
+// import React, { Component } from 'react';
+// // destructure component off of react so we dont need to call extends React.Component
+// export default class PhotoCarousel extends Component {
+//   render() {
+//     return <div />;
+//   }
+// }
