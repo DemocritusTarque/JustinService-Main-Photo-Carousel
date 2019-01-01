@@ -1,22 +1,25 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const { getAllPhotos, getAllProducts, getSpecificProductPhotos, getProductInformation, createProduct } = require('../database/index.js');
 const path = require('path');
 const axios = require('axios');
 const port = 3000;
 
-app.use(morgan());
+// app.use(morgan());
 app.use(bodyParser.json({ type: 'application/json' }));
-app.use(express.static(path.join(__dirname, '../client/dist/index.html')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+// app.use('/', express.static('client/dist'));
+
+
 
 app.get('/api/item/:itemId', (req, res) => {
     var productArray = {
         productInfo: []
     };
-    console.log(req.body, 'what is request body on server??')
-    console.log(req.params, 'what is Param? on server??')
+    // console.log(req.body, 'what is request body on server??')
+    // console.log(req.params, 'what is Param? on server??')
 
     getProductInformation(req.params.itemId, (error, productInfo) => {
         if (error) {
@@ -25,17 +28,17 @@ app.get('/api/item/:itemId', (req, res) => {
         } else {
             console.log(productInfo, 'this is ProductInfo from GET on SERVER!');
             productArray.productInfo = productInfo;
-            res.send(productArray);
+            res.json(productArray);
         }
     });
 });
 
-app.get('api/itemImages/:itemId', (req, res) => {
+app.get('/api/itemImages/:itemId', (req, res) => {
     var imagesArray = {
         images: []
     };
-    // console.log(req.body, 'what is request body on server??')
-    // console.log(req.params, 'what is Param? on server??')
+    // console.log(req.body, 'what is request body for images????')
+    // console.log(req.params, 'what is Param? on server Images??')
 
     getSpecificProductPhotos(req.params.itemId, (error, images) => {
         if (error) {
@@ -44,7 +47,7 @@ app.get('api/itemImages/:itemId', (req, res) => {
         } else {
             console.log('Results from the Server GET Function!', images);
             imagesArray.images = images;
-            res.json(imagesArray)
+            res.json(imagesArray);
         }
     });
 })

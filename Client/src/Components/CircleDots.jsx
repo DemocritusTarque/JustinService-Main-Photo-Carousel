@@ -1,1 +1,0 @@
-// circle dots at the very bottom of the carousel window, are solid white in color except for the one that resembles what picture is being shown that one is black - could this be done in CSS would that make more sense?
