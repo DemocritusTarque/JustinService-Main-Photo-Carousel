@@ -325,3 +325,4 @@ insert into images (id, urlLink, product_id) values(198, "https://s3.us-east-2.a
 insert into images (id, urlLink, product_id) values(199, "https://s3.us-east-2.amazonaws.com/fecphoto-carousel/fecpics/images+(5).jpeg", 43);
 insert into images (id, urlLink, product_id) values(200, "https://s3.us-east-2.amazonaws.com/fecphoto-carousel/fecpics/GUEST_0ccfdf16-9ba1-4201-a73a-1ddf3268cd0b.jpeg", 89);
 insert into images (id, urlLink, product_id) values(201, "https://s3.us-east-2.amazonaws.com/fecphoto-carousel/fecpics/GUEST_0cc14a95-4da5-4c75-a77f-38f5f2bfab63.jpeg", 28);
+

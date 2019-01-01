@@ -46,32 +46,33 @@ connection.connect(error => {
 // 	);
 // };
 
-getAllPhotos = function (callback) {
-	connection.query('SELECT * from images', (error, images) => {
-		if (error) {
-			console.log('Error getting All Images from DB!', error)
-		} else {
-			console.log(images, 'what are the images we are sending back?????')
-			callback(null, images)
-		}
-	})
-};
+// getAllPhotos = function (callback) {
+// 	connection.query('SELECT * from images', (error, images) => {
+// 		if (error) {
+// 			console.log('Error getting All Images from DB!', error)
+// 		} else {
+// 			console.log(images, 'what are the images we are sending back?????')
+// 			callback(null, images)
+// 		}
+// 	})
+// };
 
-getAllProducts = function (callback) {
-	connection.query('SELECT * from product', (error, product) => {
-		if (error) {
-			console.log('Error getting All Products from DB', error);
-		} else {
-			console.log('what are the products we get?!?!', product)
-			callback(null, product)
-		}
-	})
-}
+// getAllProducts = function (callback) {
+// 	connection.query('SELECT * from product', (error, product) => {
+// 		if (error) {
+// 			console.log('Error getting All Products from DB', error);
+// 		} else {
+// 			console.log('what are the products we get?!?!', product)
+// 			callback(null, product)
+// 		}
+// 	})
+// }
 
-getSpecificProductPhotos = function (id, callback) {
-	connection.query('SELECT * from images WHERE id=(?)', [id], (error, results) => {
+getSpecificProductPhotos = function (productId, callback) {
+	connection.query('SELECT * from images WHERE product_id=(?)', [productId], (error, results) => {
 		if (error) {
 			console.log('Error getting Pictures of Specific Product!', error);
+			callback(error, null);
 		} else {
 			console.log('what are the pics?!?!', results);
 			callback(null, results);
@@ -79,9 +80,25 @@ getSpecificProductPhotos = function (id, callback) {
 	})
 }
 
+
+
+getProductInformation = function (productId, callback) {
+	connection.query('Select * from product where id=(?)', [productId], (error, results) => {
+		if (error) {
+			console.log(error, 'Issue getting Product Info DB Query!');
+			callback(error, null);
+		} else {
+			console.log('This is the Product Info from DB Query!!!');
+			callback(null, results);
+		}
+	})
+}
+
+
 module.exports = {
-	getAllPhotos,
-	getAllProducts,
-	getSpecificProductPhotos
+	// getAllPhotos,
+	// getAllProducts,
+	getSpecificProductPhotos,
+	getProductInformation
 	// createProduct
 };

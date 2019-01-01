@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const { getAllPhotos, getAllProducts, getSpecificProductPhotos, createProduct } = require('../database/index.js');
+const { getAllPhotos, getAllProducts, getSpecificProductPhotos, getProductInformation, createProduct } = require('../database/index.js');
 const path = require('path');
 const axios = require('axios');
 const port = 3000;
@@ -11,16 +11,44 @@ app.use(morgan());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(path.join(__dirname, '../client/dist/index.html')));
 
-app.get('/api/seedData/:id', (req, res) => {
-    getSpecificProductPhotos(req.params.id, (error, results) => {
+app.get('/api/item/:itemId', (req, res) => {
+    var productArray = {
+        productInfo: []
+    };
+    console.log(req.body, 'what is request body on server??')
+    console.log(req.params, 'what is Param? on server??')
+
+    getProductInformation(req.params.itemId, (error, productInfo) => {
+        if (error) {
+            console.log(error, 'Error with Getting Product Info from SERVER!');
+            res.status(500).send(error);
+        } else {
+            console.log(productInfo, 'this is ProductInfo from GET on SERVER!');
+            productArray.productInfo = productInfo;
+            res.send(productArray);
+        }
+    });
+});
+
+app.get('api/itemImages/:itemId', (req, res) => {
+    var imagesArray = {
+        images: []
+    };
+    // console.log(req.body, 'what is request body on server??')
+    // console.log(req.params, 'what is Param? on server??')
+
+    getSpecificProductPhotos(req.params.itemId, (error, images) => {
         if (error) {
             console.log('Error from Server GET function!', error);
+            res.status(500).send(error)
         } else {
-            console.log('Results from the Server GET Function!', results);
-            res.json(results);
+            console.log('Results from the Server GET Function!', images);
+            imagesArray.images = images;
+            res.json(imagesArray)
         }
-    })
+    });
 })
+
 
 
 // app.get('/api/seedData', (req, res) => {
