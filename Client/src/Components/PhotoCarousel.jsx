@@ -17,8 +17,8 @@ class PhotoCarousel extends React.Component {
     this.state = {
       id: this.props.id,
       images: [],
-      products: [],
-      currentProduct: []
+      products: []
+      // currentProduct: []
     };
 
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -77,7 +77,7 @@ class PhotoCarousel extends React.Component {
   }
 
   render() {
-    // console.log(this.state.images, 'IMAGES?');
+    console.log(this.state.images, 'IMAGES?');
     // console.log(this.state, 'STATE?');
 
     // console.log(this.props, 'what are props???')
@@ -96,7 +96,7 @@ class PhotoCarousel extends React.Component {
             <PicturesColumn
               images={this.state.images}
               imageId={this.state.id}
-              currentProduct={this.state.currentProduct}
+              // currentProduct={this.state.currentProduct}
             />
           </div>
           <div className="slideCarousel">
@@ -125,9 +125,3 @@ export default PhotoCarousel;
 //     return <div />;
 //   }
 // }
-
-//           <div>
-{
-  /* <image src>1</image>
-</div> */
-}
