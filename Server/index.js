@@ -13,25 +13,18 @@ const path = require('path');
 const axios = require('axios');
 const port = 3000;
 
-// app.use(morgan());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(path.join(__dirname, '../client/dist')));
-// app.use('/', express.static('client/dist'));
 
 app.get('/api/item/:itemId', (req, res) => {
-  // var productArray = {
-  //     productName
-  // };
   // console.log(req.body, 'what is request body on server??')
-  console.log(req.params, 'what is Param? on server??');
-
+  // console.log(req.params, 'what is Param? on server??');
   getProductInformation(req.params.itemId, (error, productInfo) => {
     if (error) {
       console.log(error, 'Error with Getting Product Info from SERVER!');
       res.status(500).send(error);
     } else {
       console.log(productInfo, 'this is ProductInfo from GET on SERVER!');
-      //   productArray.productInfo = productInfo;
       res.json(productInfo);
     }
   });
@@ -43,7 +36,6 @@ app.get('/api/itemImages/:itemId', (req, res) => {
   };
   // console.log(req.body, 'what is request body for images????')
   // console.log(req.params, 'what is Param? on server Images??')
-
   getSpecificProductPhotos(req.params.itemId, (error, images) => {
     if (error) {
       console.log('Error from Server GET function!', error);

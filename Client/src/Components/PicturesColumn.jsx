@@ -1,4 +1,3 @@
-// functional component - will map the pictures and pass that to the Picture Component
 import React from 'react';
 
 function PicturesColumn(props) {
@@ -10,9 +9,9 @@ function PicturesColumn(props) {
         <h4> "Target. Expect More. Pay Less" </h4>
       </div>
 
-      <div>
+      <div className="flex-container">
         {props.images.map((image, index) => (
-          <div key={index}>
+          <div key={index} className="column">
             <img src={image.urlLink} />
           </div>
         ))}
