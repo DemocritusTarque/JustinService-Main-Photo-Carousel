@@ -5,7 +5,7 @@ function PicturesColumn(props) {
     console.log(props, 'Props in Pic Column?')
     return (
         <div>
-            Hello!
+            <h4> "Target. Expect More. Pay Less" </h4>
         </div>
     )
 }

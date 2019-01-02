@@ -17,8 +17,7 @@ class PhotoCarousel extends React.Component {
     this.state = {
       id: this.props.id,
       images: [],
-      products: []
-      // currentProduct: []
+      productTitle: ''
     };
 
     this.getProductDetails = this.getProductDetails.bind(this);
@@ -41,9 +40,10 @@ class PhotoCarousel extends React.Component {
         }
 
         response.json().then(data => {
-          console.log(data.productInfo, 'what is product response data??');
+          // console.log(data, 'DATA!!!');
+          // console.log(data[0].productName, 'what is product response data??');
           this.setState({
-            products: data.productInfo
+            productTitle: data[0].productName
           });
         });
       })
@@ -65,7 +65,7 @@ class PhotoCarousel extends React.Component {
         }
 
         response.json().then(data => {
-          console.log(data.images, 'Image DATA!?!?1');
+          // console.log(data.images, 'Image DATA!?!?1');
           this.setState({
             images: data.images
           });
@@ -78,12 +78,15 @@ class PhotoCarousel extends React.Component {
 
   render() {
     console.log(this.state.images, 'IMAGES?');
+    console.log(this.state.productTitle, 'PRODUCT TITLE??');
+
     // console.log(this.state, 'STATE?');
 
-    // console.log(this.props, 'what are props???')
+    // console.log(this.props, 'what are props???');
     const settings = {
       dots: true,
       infinite: true,
+      arrows: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1
@@ -91,24 +94,23 @@ class PhotoCarousel extends React.Component {
     return (
       <div>
         <div>
-          <h2> Single Item</h2>
+          <h2> {this.state.productTitle}</h2>
           <div className="picColumn">
             <PicturesColumn
               images={this.state.images}
               imageId={this.state.id}
-              // currentProduct={this.state.currentProduct}
             />
           </div>
           <div className="slideCarousel">
-            <Slider {...settings}>
-              {this.state.images
-                ? this.state.images.map((image, index) => (
-                    <div key={index}>
-                      <img src={image.urlLink} />
-                    </div>
-                  ))
-                : null}
-            </Slider>
+            {this.state.images.length ? (
+              <Slider {...settings}>
+                {this.state.images.map((image, index) => (
+                  <div key={index}>
+                    <img src={image.urlLink} />
+                  </div>
+                ))}
+              </Slider>
+            ) : null}
           </div>
         </div>
       </div>
