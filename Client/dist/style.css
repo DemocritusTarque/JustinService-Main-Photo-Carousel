@@ -31,8 +31,5 @@
   flex-wrap: wrap;
   padding: 0 4px;
   justify-content: center;
-}
-
-.slick-slider slick-initialized {
-  display: flex;
+  border: 2px solid black;
 }
