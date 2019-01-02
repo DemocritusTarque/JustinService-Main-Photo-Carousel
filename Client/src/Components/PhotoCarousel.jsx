@@ -101,11 +101,11 @@ class PhotoCarousel extends React.Component {
               imageId={this.state.id}
             />
           </div>
-          <div className="slideCarousel">
+          <div className="flex-column">
             {this.state.images.length ? (
               <Slider {...settings}>
                 {this.state.images.map((image, index) => (
-                  <div key={index}>
+                  <div key={index} className="row">
                     <img src={image.urlLink} />
                   </div>
                 ))}
