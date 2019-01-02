@@ -77,8 +77,8 @@ class PhotoCarousel extends React.Component {
   }
 
   render() {
-    console.log(this.state.images, 'IMAGES?');
-    console.log(this.state.productTitle, 'PRODUCT TITLE??');
+    // console.log(this.state.images, 'IMAGES?');
+    // console.log(this.state.productTitle, 'PRODUCT TITLE??');
 
     // console.log(this.state, 'STATE?');
 
