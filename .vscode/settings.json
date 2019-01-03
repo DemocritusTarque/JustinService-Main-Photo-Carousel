@@ -13,7 +13,7 @@
   "prettier.eslintIntegration": true,
   "prettier.tabWidth": 2,
   "editor.formatOnSave": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "browserSync.config": {
     "browser": ["chrome", "firefox"],
     "codeSync": false

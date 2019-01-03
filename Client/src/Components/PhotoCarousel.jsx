@@ -92,25 +92,32 @@ class PhotoCarousel extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <div>
-        <div>
-          <h2> {this.state.productTitle}</h2>
+      <div className="outerDiv">
+        <h2> {this.state.productTitle}</h2>
+
+        <div className="testing123">
           <div className="picColumn">
             <PicturesColumn
               images={this.state.images}
               imageId={this.state.id}
             />
           </div>
-          <div className="flex-column">
-            {this.state.images.length ? (
-              <Slider {...settings}>
-                {this.state.images.map((image, index) => (
-                  <div key={index} className="row">
-                    <img src={image.urlLink} />
-                  </div>
-                ))}
-              </Slider>
-            ) : null}
+          <div className="mainPictureContainer">
+            <div className="flex-column">
+              {this.state.images.length ? (
+                <Slider {...settings}>
+                  {this.state.images.map((image, index) => (
+                    <div key={index} className="row">
+                      <img
+                        src={image.urlLink}
+                        className="picture"
+                        style={{ width: 350, height: 300 }}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
@@ -127,3 +134,28 @@ export default PhotoCarousel;
 //     return <div />;
 //   }
 // }
+
+// return (
+//   <div>
+//     <div>
+//       <h2> {this.state.productTitle}</h2>
+//       <div className="picColumn">
+//         <PicturesColumn
+//           images={this.state.images}
+//           imageId={this.state.id}
+//         />
+//       </div>
+//       <div className="flex-column">
+//         {this.state.images.length ? (
+//           <Slider {...settings}>
+//             {this.state.images.map((image, index) => (
+//               <div key={index} className="row">
+//                 <img src={image.urlLink} />
+//               </div>
+//             ))}
+//           </Slider>
+//         ) : null}
+//       </div>
+//     </div>
+//   </div>
+// );
