@@ -14,11 +14,11 @@ const axios = require('axios');
 const port = 3000;
 
 app.use(bodyParser.json({ type: 'application/json' }));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+// app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/', express.static('./client/dist/'));
+app.use(/\/\d+\//, express.static('./client/dist/'));
 
 app.get('/api/item/:itemId', (req, res) => {
-  // console.log(req.body, 'what is request body on server??')
-  // console.log(req.params, 'what is Param? on server??');
   getProductInformation(req.params.itemId, (error, productInfo) => {
     if (error) {
       console.log(error, 'Error with Getting Product Info from SERVER!');
@@ -34,8 +34,6 @@ app.get('/api/itemImages/:itemId', (req, res) => {
   var imagesArray = {
     images: []
   };
-  // console.log(req.body, 'what is request body for images????')
-  // console.log(req.params, 'what is Param? on server Images??')
   getSpecificProductPhotos(req.params.itemId, (error, images) => {
     if (error) {
       console.log('Error from Server GET function!', error);

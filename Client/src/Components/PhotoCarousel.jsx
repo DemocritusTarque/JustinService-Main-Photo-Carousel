@@ -1,11 +1,3 @@
-// stateful component with currentPicture
-
-// main window shows the main photo of the item/product when the page loads / is redirected to the item page when the item is clicked on that they want to purchase
-// has a Mouse Hover Zoom image functionality
-// has a click&drag swipe like functionality to go to the next photo either to the right or the left (down the picture column is to the right, up the picture column is to the left**)
-
-// onClick this becomes the picture in the photoCarousel.... - does this component need to contain state? - considering this to be functional only and stateful to be the PhotoCarousel with a currentPic:  property in state.
-
 import React from 'react';
 import PicturesColumn from './PicturesColumn.jsx';
 import Slider from 'react-slick';
@@ -15,7 +7,7 @@ class PhotoCarousel extends React.Component {
     super(props);
 
     this.state = {
-      id: this.props.id,
+      id: this.props.id, // || 1,
       images: [],
       productTitle: ''
     };
@@ -30,7 +22,17 @@ class PhotoCarousel extends React.Component {
   }
 
   getProductDetails() {
-    var itemId = this.state.id;
+    var itemId;
+    var id = window.location.pathname.slice(1, window.location.pathname.length - 1);
+    // console.log(window.location.pathname.slice(1, window.location.pathname.length - 1), 'WHATS WINDOW?!');
+
+    if (id) {
+      itemId = Number(id);
+      // console.log(typeof id);
+      // console.log(itemId, 'did we reset???')
+    } else {
+      itemId = this.state.id;
+    }
     fetch(`/api/item/${itemId}`)
       .then(response => {
         // console.log(response, 'CLIENT SIDE RES!!??')
@@ -53,11 +55,22 @@ class PhotoCarousel extends React.Component {
           'error with component did Mount Product Info Func!!'
         );
       });
+
+
+
   }
 
   getProductPhotos() {
-    var itemId = this.state.id;
-    fetch(`api/itemImages/${itemId}`)
+    var itemId;
+    var id = window.location.pathname.slice(1, window.location.pathname.length - 1);
+    if (id) {
+      itemId = Number(id);
+      // console.log(typeof id);
+      // console.log(itemId, 'did we reset???')
+    } else {
+      itemId = this.state.id;
+    }
+    fetch(`/api/itemImages/${itemId}`)
       .then(response => {
         if (response.status !== 200) {
           console.log('Error with Client SIDE GET Pictures!');
@@ -65,7 +78,6 @@ class PhotoCarousel extends React.Component {
         }
 
         response.json().then(data => {
-          // console.log(data.images, 'Image DATA!?!?1');
           this.setState({
             images: data.images
           });
@@ -77,12 +89,6 @@ class PhotoCarousel extends React.Component {
   }
 
   render() {
-    // console.log(this.state.images, 'IMAGES?');
-    // console.log(this.state.productTitle, 'PRODUCT TITLE??');
-
-    // console.log(this.state, 'STATE?');
-
-    // console.log(this.props, 'what are props???');
     const settings = {
       dots: true,
       infinite: true,
@@ -126,36 +132,3 @@ class PhotoCarousel extends React.Component {
 }
 
 export default PhotoCarousel;
-
-// import React, { Component } from 'react';
-// // destructure component off of react so we dont need to call extends React.Component
-// export default class PhotoCarousel extends Component {
-//   render() {
-//     return <div />;
-//   }
-// }
-
-// return (
-//   <div>
-//     <div>
-//       <h2> {this.state.productTitle}</h2>
-//       <div className="picColumn">
-//         <PicturesColumn
-//           images={this.state.images}
-//           imageId={this.state.id}
-//         />
-//       </div>
-//       <div className="flex-column">
-//         {this.state.images.length ? (
-//           <Slider {...settings}>
-//             {this.state.images.map((image, index) => (
-//               <div key={index} className="row">
-//                 <img src={image.urlLink} />
-//               </div>
-//             ))}
-//           </Slider>
-//         ) : null}
-//       </div>
-//     </div>
-//   </div>
-// );
