@@ -21,12 +21,3 @@ function PicturesColumn(props) {
 }
 
 export default PicturesColumn;
-
-// {
-/* <div className="flex-container">
-{props.images.map((image, index) => (
-  <div key={index} className="column">
-    <img src={image.urlLink} />
-  </div>
-))} */
-// }
