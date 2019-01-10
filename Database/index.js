@@ -46,27 +46,27 @@ connection.connect(error => {
 // 	);
 // };
 
-// getAllPhotos = function (callback) {
-// 	connection.query('SELECT * from images', (error, images) => {
-// 		if (error) {
-// 			console.log('Error getting All Images from DB!', error)
-// 		} else {
-// 			console.log(images, 'what are the images we are sending back?????')
-// 			callback(null, images)
-// 		}
-// 	})
-// };
+getAllPhotos = function (callback) {
+	connection.query('SELECT * from images', (error, images) => {
+		if (error) {
+			console.log('Error getting All Images from DB!', error)
+		} else {
+			console.log(images, 'what are the images we are sending back?????')
+			callback(null, images)
+		}
+	})
+};
 
-// getAllProducts = function (callback) {
-// 	connection.query('SELECT * from product', (error, product) => {
-// 		if (error) {
-// 			console.log('Error getting All Products from DB', error);
-// 		} else {
-// 			console.log('what are the products we get?!?!', product)
-// 			callback(null, product)
-// 		}
-// 	})
-// }
+getAllProducts = function (callback) {
+	connection.query('SELECT * from product', (error, product) => {
+		if (error) {
+			console.log('Error getting All Products from DB', error);
+		} else {
+			console.log('what are the products we get?!?!', product)
+			callback(null, product)
+		}
+	})
+}
 
 getSpecificProductPhotos = function (productId, callback) {
 	connection.query('SELECT * from images WHERE product_id=(?)', [productId], (error, results) => {
@@ -96,8 +96,8 @@ getProductInformation = function (productId, callback) {
 
 
 module.exports = {
-	// getAllPhotos,
-	// getAllProducts,
+	getAllPhotos,
+	getAllProducts,
 	getSpecificProductPhotos,
 	getProductInformation
 	// createProduct

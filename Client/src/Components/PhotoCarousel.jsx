@@ -55,9 +55,6 @@ class PhotoCarousel extends React.Component {
           'error with component did Mount Product Info Func!!'
         );
       });
-
-
-
   }
 
   getProductPhotos() {
