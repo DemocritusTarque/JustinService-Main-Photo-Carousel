@@ -7,7 +7,7 @@
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "seed": "mysql -u root < database/schema.sql",
-    "gen": "node Database/dataGen.js",
+    "gen": "touch data1.csv | touch data2.csv | touch data3.csv | touch data4.csv | node Database/dataGen.js",
     "test": "jest"
   },
   "repository": {
