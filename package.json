@@ -8,6 +8,7 @@
     "start": "nodemon server/index.js",
     "seed": "mysql -u root < database/schema.sql",
     "gen": "touch data1.csv | touch data2.csv | touch data3.csv | touch data4.csv | node Database/dataGen.js",
+    "mongoSeed" : "mongoimport --db products --collection products --type csv --columnsHaveTypes --fields 'product.string(), image.string()' --file data1.csv | mongoimport --db products --collection products --type csv --columnsHaveTypes --fields 'product.string(), image.string()' --file data2.csv | mongoimport --db products --collection products --type csv --columnsHaveTypes --fields 'product.string(), image.string()' --file data3.csv | mongoimport --db products --collection products --type csv --columnsHaveTypes --fields 'product.string(), image.string()' --file data4.csv",
     "test": "jest"
   },
   "repository": {
