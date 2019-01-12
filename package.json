@@ -7,6 +7,7 @@
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "seed": "mysql -u root < database/schema.sql",
+    "gen": "node Database/dataGen.js",
     "test": "jest"
   },
   "repository": {
